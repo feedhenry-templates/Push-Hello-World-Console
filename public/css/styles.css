@@ -218,3 +218,7 @@ input[type=submit]:active{
 .alert.danger{
   background: #D32F2F;
 }
+
+p.loader{
+  color: #999;
+}
