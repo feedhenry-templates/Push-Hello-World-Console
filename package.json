@@ -1,0 +1,9 @@
+{
+  "name": "fh-app",
+  "version": "0.1.0",
+  "dependencies" : {
+    "express" : "3.3.4",
+    "corser": "1.2.0"
+  },
+  "main" : "application.js"
+}
