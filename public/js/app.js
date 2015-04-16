@@ -1,28 +1,49 @@
 var app = {
   categories: [],
+  selectedCategories: [],
   selectedTemplate: null,
+  listTemplate: null,
+
+  renderCategories: function (template) {
+    document.getElementById("list").innerHTML = template({categories: this.categories});
+  },
+
   initialize: function () {
     var source = document.getElementById('category-template').innerText;
-    var template = Handlebars.compile(source);
+    this.listTemplate = Handlebars.compile(source);
     this.selectedTemplate = Handlebars.compile(document.getElementById('selected-template').innerText);
     $fh.cloud({
       path: '/api/',
       method: 'GET'
     }, function (res) {
-      var html = template({categories: res.data});
-      document.getElementById("list").innerHTML = html;
+      app.categories = res.data;
+      app.renderCategories(template);
     });
   },
 
   selectionChanged: function(option) {
     if (option.checked) {
-      this.categories.push(option.id);
+      this.selectedCategories.push(option.id);
     } else {
-      this.categories.splice(this.categories.indexOf(option.id), 1);
+      this.selectedCategories.splice(this.selectedCategories.indexOf(option.id), 1);
     }
-    var html = this.selectedTemplate({selected: this.categories});
-    document.getElementById('selected').innerHTML = html;
-    document.getElementById('submit').disabled = this.categories.length === 0;
+    document.getElementById('selected').innerHTML = this.selectedTemplate({selected: this.selectedCategories});
+    document.getElementById('submit').disabled = this.selectedCategories.length === 0;
+  },
+
+  deleteCategory: function(name) {
+    $fh.cloud({
+      path: '/api/' + name,
+      method: 'DELETE'
+    }, function() {
+      this.categories.splice(this.categories.indexOf(name), 1);
+      var index = this.selectedCategories.indexOf(name);
+      if (index !== -1) {
+        this.selectedCategories.splice(index, 1);
+      }
+
+      this.renderCategories(this.listTemplate);
+    });
   },
 
   send: function (message) {
@@ -30,7 +51,7 @@ var app = {
       path: '/api/send',
       data: {
         alert: message,
-        categories: this.categories
+        categories: this.selectedCategories
       }
     }, function (res) {
       console.log('send', res);
