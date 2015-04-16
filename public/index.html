@@ -40,10 +40,12 @@
     <!-- /message -->
 
     <div class="submit-btn">
-      <input id="submit" type="submit" value="Send Push Notification" disabled/>
+      <input id="submit" type="submit" value="Send Push Notification" disabled onclick="app.send()"/>
     </div>
     <!-- /submit-btn -->
 
+    <div id="notify">
+    </div>
   </form>
 </div>
 <!-- /container -->
@@ -65,6 +67,11 @@
   {{#each selected}}
     <strong>{{this}}</strong>{{#unless @last}},{{/unless}}
   {{/each}}
+</script>
+<script id="notification-template" type="text/x-handlebars-template">
+  <div class="alert">
+    {{message}}
+  </div>
 </script>
 <script type="application/javascript">
   app.initialize();

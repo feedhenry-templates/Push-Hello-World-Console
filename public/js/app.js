@@ -3,15 +3,24 @@ var app = {
   selectedCategories: [],
   selectedTemplate: null,
   listTemplate: null,
+  notificationTemplate: null,
 
   renderCategories: function () {
     document.getElementById("list").innerHTML = this.listTemplate({categories: this.categories});
   },
 
+  fadeOutMessage: function(message) {
+    var notifyElement = document.getElementById('notify');
+    notifyElement.innerHTML = app.notificationTemplate({message: message});
+    window.setTimeout(function() {
+      notifyElement.innerHTML = '';
+    }, 3000);
+  },
+
   initialize: function () {
-    var source = document.getElementById('category-template').innerText;
-    this.listTemplate = Handlebars.compile(source);
+    this.listTemplate = Handlebars.compile(document.getElementById('category-template').innerText);
     this.selectedTemplate = Handlebars.compile(document.getElementById('selected-template').innerText);
+    this.notificationTemplate = Handlebars.compile(document.getElementById('notification-template').innerText);
     $fh.cloud({
       path: '/api/',
       method: 'GET'
@@ -61,15 +70,16 @@ var app = {
     });
   },
 
-  send: function (message) {
+  send: function () {
+    var message = document.getElementById('pushmessage').value;
     $fh.cloud({
       path: '/api/send',
       data: {
         alert: message,
         categories: this.selectedCategories
       }
-    }, function (res) {
-      console.log('send', res);
+    }, function () {
+      app.fadeOutMessage('Message sent!');
     });
   }
 };
