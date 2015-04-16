@@ -1,14 +1,63 @@
 <!DOCTYPE html>
-<html class="no-js">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="feedhenry.js"></script>
-  </head>
-  <body>
-    <p>Advanced FeedHenry Webapp Template</p>
-  </body>
+<html>
+<head>
+  <title>Feedhenry Push Template - Console</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link href="css/styles.css" rel="stylesheet" media="screen, print">
+  <script src="js/lib/feedhenry.js"></script>
+  <script src="js/lib/handlebars-v3.0.1.js"></script>
+  <script src="js/app.js"></script>
+</head>
+<body>
+
+<h1 class="brand">Brand Name</h1>
+
+<div class="container">
+  <form action="#">
+    <div class="category-list">
+      <h3>1. Select categories:</h3>
+
+      <div id="list">
+        Loading...
+      </div>
+
+    </div>
+    <!-- /category-list -->
+
+    <div class="message">
+      <h3>2. Write a message:</h3>
+      <label for="pushmessage" id="selected">
+        to:
+      </label>
+      <textarea rows="9" cols="5" id="pushmessage"></textarea>
+    </div>
+    <!-- /message -->
+
+    <div class="submit-btn">
+      <input id="submit" type="submit" value="Send Push Notification" disabled/>
+    </div>
+    <!-- /submit-btn -->
+
+  </form>
+</div>
+<!-- /container -->
+<script id="category-template" type="text/x-handlebars-template">
+  {{#each categories}}
+  <div class="category">
+    <input type="checkbox" id="{{this}}" onchange="app.selectionChanged(this)"/>
+    <label for="{{this}}">{{this}}</label>
+  </div>
+  {{/each}}
+</script>
+<script id="selected-template" type="text/x-handlebars-template">
+  to:
+  {{#each selected}}
+    <strong>{{this}}</strong>{{#unless @last}},{{/unless}}
+  {{/each}}
+</script>
+<script type="application/javascript">
+  app.initialize();
+</script>
+</body>
 </html>
