@@ -4,6 +4,7 @@
   <title>Feedhenry Push Template - Console</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <link href="css/styles.css" rel="stylesheet" media="screen, print">
   <script src="js/lib/feedhenry.js"></script>
   <script src="js/lib/handlebars-v3.0.1.js"></script>
@@ -48,7 +49,7 @@
     <input type="checkbox" id="{{this}}" onchange="app.selectionChanged(this)"/>
     <label for="{{this}}">
       {{this}}
-      <a href="#" class="delete-btn">
+      <a href="#" class="delete-btn" onclick="app.deleteCategory('{{this}}')">
         <i class="fa fa-trash-o"></i>
       </a>
     </label>
