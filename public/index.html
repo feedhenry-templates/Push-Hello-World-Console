@@ -15,10 +15,14 @@
 <h1 class="brand">Brand Name</h1>
 
 <div class="container">
-  <form action="#">
+  <form>
     <div class="category-list">
       <h3>1. Select categories:</h3>
 
+      <div class="category-add">
+        <label for="category-add" class="sr-only">Category Add</label>
+        <input type="text" id="category-add" placeholder="Add a Category" onkeydown="app.addCategory(this)"/>
+      </div>
       <div id="list">
         Loading...
       </div>

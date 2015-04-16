@@ -4,8 +4,8 @@ var app = {
   selectedTemplate: null,
   listTemplate: null,
 
-  renderCategories: function (template) {
-    document.getElementById("list").innerHTML = template({categories: this.categories});
+  renderCategories: function () {
+    document.getElementById("list").innerHTML = this.listTemplate({categories: this.categories});
   },
 
   initialize: function () {
@@ -17,11 +17,11 @@ var app = {
       method: 'GET'
     }, function (res) {
       app.categories = res.data;
-      app.renderCategories(template);
+      app.renderCategories();
     });
   },
 
-  selectionChanged: function(option) {
+  selectionChanged: function (option) {
     if (option.checked) {
       this.selectedCategories.push(option.id);
     } else {
@@ -31,18 +31,33 @@ var app = {
     document.getElementById('submit').disabled = this.selectedCategories.length === 0;
   },
 
-  deleteCategory: function(name) {
+  addCategory: function (input) {
+    if (event.keyCode === 13) {
+      $fh.cloud({
+        path: '/api/',
+        data: {
+          name: input.value
+        }
+      }, function() {
+        app.categories.push(input.value);
+        app.renderCategories();
+        input.value = '';
+      });
+    }
+  },
+
+  deleteCategory: function (name) {
     $fh.cloud({
       path: '/api/' + name,
       method: 'DELETE'
-    }, function() {
-      this.categories.splice(this.categories.indexOf(name), 1);
+    }, function () {
+      app.categories.splice(app.categories.indexOf(name), 1);
       var index = this.selectedCategories.indexOf(name);
       if (index !== -1) {
-        this.selectedCategories.splice(index, 1);
+        app.selectedCategories.splice(index, 1);
       }
 
-      this.renderCategories(this.listTemplate);
+      app.renderCategories();
     });
   },
 
