@@ -1,16 +1,17 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
 
 html{
-  background: #ccc;
+  background: #eee;
 }
 
 body{
-  background: #ccc;
+  background: #eee;
   font-family: 'Open Sans', sans-serif;
   font-size: 13px;
   font-weight: 400;
   margin: 0;
   padding: 0;
+  color: rgba(0,0,0,.8);
 }
 
 strong,h1,h2, h3,h4.h5.h6{
@@ -23,6 +24,10 @@ h3{
   font-size: 15px;
 }
 
+.sr-only{
+  display: none;
+}
+
 .brand{
   font-weight: 300;
   margin: 60px 0 40px 0;
@@ -31,12 +36,12 @@ h3{
 
 .container{
   background: #f9f9f9;
-  border-radius: 5px;
+  border-radius: 2px;
   box-shadow: 0 5px 50px rgba(0,0,0,.1);
   margin: 20px auto;
   overflow: auto;
-  padding: 20px;
-  width: 600px;
+  padding: 0px;
+  width: 661px;
   zoom: 1;
 }
 
@@ -44,12 +49,33 @@ h3{
   border-right: 1px solid rgba(0,0,0,.05);
   float: left;
   width: 200px;
+  padding: 20px 20px 0 20px;
 }
 
 .category label{
-  margin-right: 20px;
-  padding-left: 35px;
+  padding: 2px 20px 2px 55px;
+  margin: 0 -20px;
   position: relative;
+  border-bottom: 1px solid rgba(0,0,0,.05);
+}
+
+.delete-btn{
+  background: #F44336;
+  color: #fff;
+  padding: 0 10px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  display: none;
+}
+
+.delete-btn:hover{
+  background: #D32F2F;
+}
+
+.category label:hover .delete-btn{
+  display: block;
 }
 
 .category label:before{
@@ -57,58 +83,66 @@ h3{
   border-radius: 13px;
   content: ".";
   height: 20px;
-  left: 2px;
+  left: 22px;
   position: absolute;
   text-indent: -99999px;
-  top: 2px;
+  top: 4px;
   width: 20px;
 }
 
 .category label:after{
-  border-radius: 9px;
-  content: ".";
-  height: 16px;
-  left: 6px;
-  position: absolute;
-  text-indent: -99999px;
-  top: 6px;
-  width: 16px;
+
+
+  /*  border-radius: 9px;
+    content: ".";
+    height: 16px;
+    text-indent: -99999px;
+    width: 16px;
+  */
 }
 
 input[type=checkbox] {
-	display: none;
+  display: none;
 }
 
 input[type=checkbox] + label {
- border-radius: 15px;
- cursor: pointer;
- display: block;
- line-height: 30px;
- margin-bottom: 2px;
+  cursor: pointer;
+  display: block;
+  line-height: 30px;
+  /* border-radius: 15px;
+   margin-bottom: 2px;
+  */
 }
 
 input[type=checkbox] + label:hover {
-  background: rgba(0,0,0,.1);
+  background: rgba(0,0,0,.05);
 }
 
 input[type=checkbox]:checked + label:before {
-  border-color: #ddd;
-  box-shadow: 0 1px 3px rgba(0,0,0,.5);
-  background: #61ac00;
+  border-color: #8BC34A;
+  /*  box-shadow: 0 1px 3px rgba(0,0,0,.5);*/
 }
 
 input[type=checkbox]:checked + label:after {
-  background: -webkit-linear-gradient(#7dde00, #7dde00); 
-  background: -o-linear-gradient(#7dde00, #7dde00);
-  background: -moz-linear-gradient(#7dde00, #7dde00);
-  background: linear-gradient(#7dde00, #61ac00);
-  border: 1px solid #61ac00;
-  box-shadow: 0 1px 3px rgba(0,0,0,.5);
+  font-family: FontAwesome;
+  content: "\f00c";
+  position: absolute;
+  left: 29px;
+  top: 3px;
+  color: #8BC34A;
+  /*  background: -webkit-linear-gradient(#7dde00, #7dde00);
+    background: -o-linear-gradient(#7dde00, #7dde00);
+    background: -moz-linear-gradient(#7dde00, #7dde00);
+    background: linear-gradient(#7dde00, #61ac00);
+    border: 1px solid #61ac00;
+    box-shadow: 0 1px 3px rgba(0,0,0,.5);
+  */
 }
 
 .message{
   float: right;
   width: 380px;
+  padding: 20px;
 }
 
 .message label{
@@ -116,27 +150,35 @@ input[type=checkbox]:checked + label:after {
   line-height: 30px;
 }
 
-textarea{
+textarea, input[type=text]{
   border: 1px solid #ccc;
   border-radius: 2px;
   display: block;
-  font-style: 13px;
+  font-size: 13px;
   font-weight: 300;
   padding: 10px;
   width: 358px;
 }
 
+input[type=text]{
+  width: 210px;
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0px;
+  margin: 0 -20px;
+  padding-left: 20px;
+  box-shadow: 0 2px 3px rgba(0,0,0,.1);
+}
+
 .submit-btn{
   clear: both;
   text-align: right;
+  padding: 0 20px 20px 20px;
 }
 
 input[type=submit]{
-  background: -webkit-linear-gradient(#7dde00, #7dde00); 
-  background: -o-linear-gradient(#7dde00, #7dde00); 
-  background: -moz-linear-gradient(#7dde00, #7dde00); 
-  background: linear-gradient(#7dde00, #61ac00);
-  box-shadow: 0 1px 3px rgba(0,0,0,.2);
+  background: #8BC34A;
+  box-shadow: 0 1px 1px rgba(0,0,0,.2);
   border: none;
   border-radius: 4px;
   color: #fff;
@@ -149,10 +191,7 @@ input[type=submit]{
 }
 
 input[type=submit]:hover{
-  background: -webkit-linear-gradient(#7dde00, #7dde00); 
-  background: -o-linear-gradient(#7dde00, #7dde00); 
-  background: -moz-linear-gradient(#7dde00, #7dde00); 
-  background: linear-gradient(#61ac00,#7dde00); 
+  background: #689F38;
   text-shadow: 0 1px 0 rgba(0,0,0,.3);
 }
 

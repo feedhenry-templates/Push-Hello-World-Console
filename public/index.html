@@ -46,7 +46,12 @@
   {{#each categories}}
   <div class="category">
     <input type="checkbox" id="{{this}}" onchange="app.selectionChanged(this)"/>
-    <label for="{{this}}">{{this}}</label>
+    <label for="{{this}}">
+      {{this}}
+      <a href="#" class="delete-btn">
+        <i class="fa fa-trash-o"></i>
+      </a>
+    </label>
   </div>
   {{/each}}
 </script>
