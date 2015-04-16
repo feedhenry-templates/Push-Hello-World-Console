@@ -22,7 +22,7 @@ var app = {
     }
     var html = this.selectedTemplate({selected: this.categories});
     document.getElementById('selected').innerHTML = html;
-    document.getElementById('submit').disabled = this.categories.length == 0;
+    document.getElementById('submit').disabled = this.categories.length === 0;
   },
 
   send: function (message) {
