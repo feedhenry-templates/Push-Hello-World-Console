@@ -9,10 +9,10 @@ var app = {
     document.getElementById("list").innerHTML = this.listTemplate({categories: this.categories});
   },
 
-  fadeOutMessage: function(message) {
+  fadeOutMessage: function (message) {
     var notifyElement = document.getElementById('notify');
     notifyElement.innerHTML = app.notificationTemplate({message: message});
-    window.setTimeout(function() {
+    window.setTimeout(function () {
       notifyElement.innerHTML = '';
     }, 3000);
   },
@@ -47,11 +47,18 @@ var app = {
         data: {
           name: input.value
         }
-      }, function() {
+      }, function () {
         app.categories.push(input.value);
         app.renderCategories();
         input.value = '';
       });
+    }
+  },
+
+  selectAll: function (source) {
+    var checkboxes = document.getElementsByName('category');
+    for (var i = 0, n = checkboxes.length; i < n; i++) {
+      checkboxes[i].checked = source.checked;
     }
   },
 

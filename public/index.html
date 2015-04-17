@@ -58,9 +58,15 @@
 </div>
 <!-- /container -->
 <script id="category-template" type="text/x-handlebars-template">
+  <div class="category all">
+    <input type="checkbox" id="all" onchange="app.selectAll(this)"/>
+    <label for="all">
+      Select All
+    </label>
+  </div>
   {{#each categories}}
   <div class="category">
-    <input type="checkbox" id="{{this}}" onchange="app.selectionChanged(this)"/>
+    <input type="checkbox" name="category" id="{{this}}" onchange="app.selectionChanged(this)"/>
     <label for="{{this}}">
       {{this}}
       <a href="#" class="delete-btn" onclick="app.deleteCategory('{{this}}')">
