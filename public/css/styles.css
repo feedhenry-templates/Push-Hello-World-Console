@@ -226,7 +226,6 @@ input[type=submit]:active{
   border-radius: 2px;
   color: #fff;
   line-height: 25px;
-  display: none;
 }
 
 .alert.danger{
