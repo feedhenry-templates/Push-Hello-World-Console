@@ -30,14 +30,18 @@ var app = {
     });
   },
 
+  renderTo: function () {
+    document.getElementById('selected').innerHTML = this.selectedTemplate({selected: this.selectedCategories});
+    document.getElementById('submit').disabled = this.selectedCategories.length === 0;
+  },
+
   selectionChanged: function (option) {
     if (option.checked) {
       this.selectedCategories.push(option.id);
     } else {
       this.selectedCategories.splice(this.selectedCategories.indexOf(option.id), 1);
     }
-    document.getElementById('selected').innerHTML = this.selectedTemplate({selected: this.selectedCategories});
-    document.getElementById('submit').disabled = this.selectedCategories.length === 0;
+    this.renderTo();
   },
 
   addCategory: function (input) {
@@ -56,10 +60,15 @@ var app = {
   },
 
   selectAll: function (source) {
+    this.selectedCategories = [];
     var checkboxes = document.getElementsByName('category');
     for (var i = 0, n = checkboxes.length; i < n; i++) {
       checkboxes[i].checked = source.checked;
+      if (source.checked) {
+        this.selectedCategories.push(checkboxes[i].id);
+      }
     }
+    this.renderTo();
   },
 
   deleteCategory: function (name) {
