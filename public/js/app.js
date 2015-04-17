@@ -75,7 +75,8 @@ var app = (function () {
     deleteCategory: function (name) {
       $fh.cloud({
         path: '/api/' + name,
-        method: 'DELETE'
+        method: 'DELETE',
+        contentType: 'text/plain'
       }, function () {
         categories.splice(categories.indexOf(name), 1);
         var index = selectedCategories.indexOf(name);
