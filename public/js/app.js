@@ -28,7 +28,7 @@ var app = (function () {
       selectedTemplate = Handlebars.compile(document.getElementById('selected-template').innerText);
       notificationTemplate = Handlebars.compile(document.getElementById('notification-template').innerText);
       $fh.cloud({
-        path: '/api/',
+        path: '/category/',
         method: 'GET'
       }, function (res) {
         categories = res.data;
@@ -48,7 +48,7 @@ var app = (function () {
     addCategory: function (input) {
       if (event.keyCode === 13) {
         $fh.cloud({
-          path: '/api/',
+          path: '/category/',
           data: {
             name: input.value
           }
@@ -74,7 +74,7 @@ var app = (function () {
 
     deleteCategory: function (name) {
       $fh.cloud({
-        path: '/api/' + name,
+        path: '/category/' + name,
         method: 'DELETE',
         contentType: 'text/plain'
       }, function () {
@@ -91,7 +91,7 @@ var app = (function () {
     send: function () {
       var message = document.getElementById('pushmessage').value;
       $fh.cloud({
-        path: '/api/send',
+        path: '/category/send',
         data: {
           alert: message,
           categories: selectedCategories
