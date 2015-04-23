@@ -94,7 +94,9 @@ var app = (function () {
         path: '/category/send',
         data: {
           alert: message,
-          categories: selectedCategories
+          criteria: {
+            categories: selectedCategories
+          }
         }
       }, function () {
         fadeOutMessage('Message sent!');
