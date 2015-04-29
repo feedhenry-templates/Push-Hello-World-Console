@@ -24,9 +24,9 @@ var app = (function () {
 
   return {
     initialize: function () {
-      listTemplate = Handlebars.compile(document.getElementById('category-template').innerText);
-      selectedTemplate = Handlebars.compile(document.getElementById('selected-template').innerText);
-      notificationTemplate = Handlebars.compile(document.getElementById('notification-template').innerText);
+      listTemplate = Handlebars.compile(document.querySelector('#category-template').innerHTML);
+      selectedTemplate = Handlebars.compile(document.querySelector('#selected-template').innerHTML);
+      notificationTemplate = Handlebars.compile(document.querySelector('#notification-template').innerHTML);
       $fh.cloud({
         path: '/category/',
         method: 'GET'
