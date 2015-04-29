@@ -95,7 +95,7 @@ var app = (function () {
         data: {
           alert: message,
           criteria: {
-            categories: selectedCategories
+             categories: selectedCategories
           }
         }
       }, function () {
